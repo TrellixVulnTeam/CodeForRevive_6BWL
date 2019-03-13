@@ -5,4 +5,5 @@ from . import views
 app_name = 'manager'
 
 urlpatterns = [path('', views.LoginPage, name="login"),
-               path('signup/', views.signUpPage, name="signup"), ]
+               path('signup/', views.signUpPage, name="signup"),
+               path('welcome/', views.welcomePage, name="welcomepage"), ]
