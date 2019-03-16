@@ -2,13 +2,13 @@ from django.shortcuts import render
 from django.shortcuts import render, get_object_or_404, redirect
 from . import forms
 from django.http import HttpResponseRedirect, HttpResponse
-from .models import SignUp
-
+from .models import SignUp, Team
+from django.views.generic import (TemplateView, ListView, DeleteView, DetailView, CreateView, UpdateView)
+from django.utils import timezone
 
 
 def loginPage(request):
     if request.method == 'POST':
-        print("me kaha")
         obj = forms.LoginForm(request.POST)
         if obj.is_valid():
             model = SignUp
@@ -21,7 +21,6 @@ def loginPage(request):
                 typed_pass = model.objects.filter(password=Password).only("email").values_list()[0][4]
                 typed_email = str(typed_email)
                 typed_pass = str(typed_pass)
-                print("----------", typed_email, typed_pass)
             except:
                 pass
 
@@ -32,7 +31,6 @@ def loginPage(request):
                 return HttpResponse("<h2>User may not exist , please signUp first</h2>")
     else:
         obj = forms.LoginForm()
-        print("yaha")
         return render(request, 'base.html', {'obj': obj})
 
 
@@ -52,5 +50,19 @@ def signUpPage(request):
         return render(request, 'signup.html', {'form': form})
 
 
+# @login_required
 def welcomePage(request):
     return render(request, 'afterLogin.html', None)
+
+
+def createTeam(request):
+    form = forms.CreateTeam
+    return render(request, 'createTeam.html', {'form': form})
+
+
+# function that will display team list
+class TeamListView(ListView):
+    model = Team
+
+    def get_queryset(self):
+        return Team.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')

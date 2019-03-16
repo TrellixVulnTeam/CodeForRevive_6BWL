@@ -1,5 +1,5 @@
 from django import forms
-from .models import SignUp
+from .models import SignUp, Team
 
 
 class SignUpForm(forms.ModelForm):
@@ -17,3 +17,10 @@ class LoginForm(forms.ModelForm):
     class Meta:
         model = SignUp
         fields = ['email_id', 'password']
+
+
+class CreateTeam(forms.ModelForm):
+    class Meta:
+        creator_name = forms.CharField
+        model = Team
+        fields = '__all__'

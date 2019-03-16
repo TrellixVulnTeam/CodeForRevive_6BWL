@@ -29,13 +29,12 @@ class Task(models.Model):
 
 
 class Team(models.Model):
-    Creator_name = models.CharField(max_length=120)
+    Creator_name = models.ForeignKey(SignUp, on_delete=models.CASCADE, related_name='teams')
     Team_Name = models.CharField(max_length=100)
     members = models.ManyToManyField(SignUp)
     description = models.TextField(max_length=1024)
     created_date = models.DateTimeField(default=timezone.now)
 
     # logo = models.ImageField(blank=True)
-
     def __str__(self):
         return self.Team_Name

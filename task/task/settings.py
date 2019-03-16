@@ -29,7 +29,7 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
-
+# ACCOUNT_ADAPTER = 'invitations.models.InvitationsAdapter'
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'bootstrap3',
     # 'invitations',
 ]
-
+# ACCOUNT_ADAPTER = 'invitations.models.InvitationsAdapter'
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.middleware.security.SecurityMiddleware',
