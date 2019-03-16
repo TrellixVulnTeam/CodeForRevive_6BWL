@@ -246,22 +246,25 @@
                 <div class="register-info-box">
                     <h2>Don't have an account?</h2>
                     <p>Try to Register First</p>
-                    <button type="button" label id="label-login" href="{%url 'manager:signup' %}">Register</button>
+                    <!--<button type="button" label id="label-login" a href="{% url 'manager:signup' %}">Register</button>-->
+                    <button class="button" label id = "label-login">
+                            <a href="{% url 'manager:signup' %}">Register</a>
+                        </button>
                     <input type="radio" name="active-log-panel" id="log-login-show">
                 </div>
 
                 <div class="white-panel">
                     <div class="login-show">
-                        <form>
+                        <form class="form-horizontal" method="POST" action="#">
                             <h2>LOGIN</h2>
-                            <!--<input type="text" placeholder="Email">-->
-                            <!--<input type="password" placeholder="Password">-->
                             {% csrf_token %}
                             {% bootstrap_form obj %}
-                            <div class="">
-                                <button type="submit" class="btn btn-success" style="margin-left: 270px">Login</button>
-                                <a href="">Forgot password?</a>
-                            </div>
+
+                            <button type="submit" class="btn btn-success" value="login" style="margin-left: 270px">
+                                Login
+                            </button>
+                            <a href="">Forgot password?</a>
+
                         </form>
                     </div>
                 </div>

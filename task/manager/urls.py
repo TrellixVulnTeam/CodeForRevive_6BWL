@@ -4,6 +4,8 @@ from . import views
 
 app_name = 'manager'
 
-urlpatterns = [path('', views.LoginPage, name="login"),
+urlpatterns = [path('', views.loginPage, name="login"),
                path('signup/', views.signUpPage, name="signup"),
-               path('welcome/', views.welcomePage, name="welcomepage"), ]
+               path('welcome/', views.welcomePage, name="welcomepage"),
+               # path('invitations/', include('invitations.urls', namespace='invitations')),
+               ]
